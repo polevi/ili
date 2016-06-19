@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Interpreter
 {
@@ -13,6 +14,14 @@ namespace Interpreter
         {
             String path = File.ReadAllText("assembly.txt");
             String fileName = Path.Combine(path.Trim(), @"Assembly\bin\Debug\assembly.dll.xml");
+
+            XmlSerializer s = new XmlSerializer(typeof(Package));
+            Package p;
+            using (StreamReader sr = new StreamReader(fileName))
+            {
+                p = (Package)s.Deserialize(sr);
+                p.Prepare();
+            }
 
             Console.WriteLine(fileName);
             Console.ReadLine();

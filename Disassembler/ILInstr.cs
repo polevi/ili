@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Disassembler
 {
-    [XmlType("ILInstruction")]
+    [XmlType("Instruction")]
     public class ILInstr
     {
         private Instruction instruction;
