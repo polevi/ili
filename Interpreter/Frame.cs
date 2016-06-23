@@ -10,36 +10,36 @@ namespace Interpreter
     {
         private Package package;
         private IStack stack;
-        private IValue[] locals;
-        private IValue[] arguments;
+        private TValue[] locals;
+        private TValue[] arguments;
 
         public Frame(Package package, IStack stack)
         {
             this.package = package;
             this.stack = stack;
-            this.locals = new IValue[256];
+            this.locals = new TValue[256];
         }
 
         public void LoadArguments(Type[] args)
         {
             if (args.Length == 0 || stack.Count == 0)
                 return;
-            arguments = new IValue[args.Length];
+            arguments = new TValue[args.Length];
             for (int i = args.Length - 1; i >= 0; i--)
                 arguments[i] = stack.Pop();
         }
 
-        public void Push(IValue value)
+        public void Push(TValue value)
         {
             stack.Push(value);
         }
 
-        public IValue Pop()
+        public TValue Pop()
         {
             return stack.Pop();
         }
 
-        public IValue[] Locals
+        public TValue[] Locals
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Interpreter
             }
         }
 
-        public IValue[] Arguments
+        public TValue[] Arguments
         {
             get
             {

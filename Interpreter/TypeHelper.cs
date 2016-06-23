@@ -99,65 +99,6 @@ namespace Interpreter
             return s.Substring(startPos, idx - startPos);
         }
 
-        /*
-        public static Type FindTypeOld(String typeName)
-        {
-            if (_types == null)
-                _types = new Dictionary<string, Type>();
-
-            Type result;
-            if (!_types.TryGetValue(typeName, out result))
-            {
-                String[] arr = typeName.Split(new char[] { '`' });
-                bool isGeneric = false;
-                if (arr.Length == 2)
-                    isGeneric = (arr[1].Contains('['));
-
-                if (!isGeneric)
-                {
-                    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-                    {
-                        Type type = a.GetType(typeName);
-
-                        if (type != null)
-                        {
-                            _types.Add(typeName, type);
-                            return type;
-                        }
-                    }
-                }
-                else
-                {
-                    int cnt = Int32.Parse(arr[1].Substring(0, 1));
-
-                    int p1 = arr[1].IndexOf(']');
-                    String s = arr[1].Substring(2, p1 - 2);
-
-
-                    Type t = FindType(String.Format("{0}`{1}", arr[0], cnt.ToString()));
-                    Type[] args = new Type[cnt];
-                    String[] ts = arr[1].Substring(2, arr[1].Length - 3).Split(new char[] { ',' });
-                    for (int i = 0; i < ts.Length; i++)
-                    {
-                        args[i] = FindType(ts[i]);
-                    }
-                    result = t.MakeGenericType(args);
-                    _types.Add(typeName, result);
-                    return result;
-                }
-
-                return TypeInfo.GetType(typeName);
-            }
-            else
-            {
-                if (result == null)
-                    throw new Exception(String.Format("Type '{0}' is not found.", typeName));
-                else
-                    return result;
-            }
-        }
-        */
-
         public static Type[] ArgumentsFromString(String name)
         {
             int pos = name.IndexOf('(');

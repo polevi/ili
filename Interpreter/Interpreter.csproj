@@ -49,7 +49,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IStack.cs" />
-    <Compile Include="IValue.cs" />
+    <Compile Include="TValue.cs" />
+    <Compile Include="TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

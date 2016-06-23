@@ -23,7 +23,8 @@ namespace Interpreter
                 p.Prepare();
             }
 
-            Console.WriteLine(fileName);
+            p.Run();
+
             Console.ReadLine();
         }
     }

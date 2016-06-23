@@ -17,8 +17,16 @@ namespace Interpreter
         public String ArgType { get; set; }
         public String ArgValue { get; set; }
 
-        private IValue operand;
+        private TValue operand;
         private Type operandType;
+
+        public TValue Operand 
+        {
+            get
+            {
+                return operand;
+            }
+        }
 
         public void Prepare()
         {
@@ -35,41 +43,41 @@ namespace Interpreter
                         r = ArgValue.Split(new String[] { " " }, StringSplitOptions.None);
                         m = r[1].Split(new String[] { "::" }, StringSplitOptions.None);
                         if (m[0].StartsWith("local."))
-                            operand = new IValue(m[1]);
+                            operand = new TValue(m[1]);
                         else
-                            operand = new IValue(TypeHelper.FindType(m[0]).GetField(m[1]));
+                            operand = new TValue(TypeHelper.FindType(m[0]).GetField(m[1]));
                         break;
                     case OperandType.InlineMethod:
                         ArgValue = new System.Text.RegularExpressions.Regex(@"\[\[(.+?)\]\]").Replace(ArgValue, "");
                         r = ArgValue.Split(new String[] { " " }, StringSplitOptions.None);
                         m = r[1].Split(new String[] { "::" }, StringSplitOptions.None);
-                        operand = new IValue(MethodFromString(r[0], m[0], m[1]));
+                        operand = new TValue(MethodFromString(r[0], m[0], m[1]));
                         break;
                     case OperandType.ShortInlineBrTarget:
                     case OperandType.InlineBrTarget:
-                        operand = new IValue(Convert.ToInt32(ArgValue));
+                        operand = new TValue(Convert.ToInt32(ArgValue));
                         break;
                     case OperandType.InlineType:
                         if (ArgValue.StartsWith("local."))
                         {
-                            operand = new IValue(ArgValue);
-                            operandType = typeof(IValue);
+                            operand = new TValue(ArgValue);
+                            operandType = typeof(TValue);
                         }
                         else
                         {
-                            operand = new IValue(TypeHelper.FindType(ArgValue));
+                            operand = new TValue(TypeHelper.FindType(ArgValue));
                             operandType = TypeHelper.FindType(ArgValue);
                         }
                         break;
                     case OperandType.InlineString:
-                        operand = new IValue(ArgValue);
+                        operand = new TValue(ArgValue);
                         break;
                     case OperandType.ShortInlineVar:
-                        operand = new IValue(Convert.ToInt32(ArgValue));
+                        operand = new TValue(Convert.ToInt32(ArgValue));
                         break;
                     case OperandType.InlineI:
                     case OperandType.ShortInlineI:
-                        operand = new IValue(Convert.ToInt32(ArgValue));
+                        operand = new TValue(Convert.ToInt32(ArgValue));
                         break;
                     case OperandType.InlineR:
                     case OperandType.ShortInlineR:
@@ -78,7 +86,7 @@ namespace Interpreter
                         System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator = ".";
                         try
                         {
-                            operand = new IValue(Convert.ToDouble(ArgValue));
+                            operand = new TValue(Convert.ToDouble(ArgValue));
                         }
                         finally
                         {
@@ -88,15 +96,15 @@ namespace Interpreter
                         break;
                     case OperandType.InlineTok:
                         if (ArgValue.StartsWith("local."))
-                            operand = new IValue(ArgValue);
+                            operand = new TValue(ArgValue);
                         else
-                            operand = new IValue(TypeHelper.FindType(ArgValue));
+                            operand = new TValue(TypeHelper.FindType(ArgValue));
                         break;
                     case OperandType.InlineSwitch:
-                        operand = new IValue(Array.ConvertAll<String, int>(ArgValue.Split(new String[] { "," }, StringSplitOptions.None), item => System.Int32.Parse(item)));
+                        operand = new TValue(Array.ConvertAll<String, int>(ArgValue.Split(new String[] { "," }, StringSplitOptions.None), item => System.Int32.Parse(item)));
                         break;
                     case OperandType.InlineI8:
-                        operand = new IValue(Convert.ToUInt64(ArgValue));
+                        operand = new TValue(Convert.ToUInt64(ArgValue));
                         break;
                 }
             }
@@ -159,6 +167,5 @@ namespace Interpreter
                 return result;
             }
         }
-
     }
 }

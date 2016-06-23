@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,1119 +39,1184 @@ namespace Interpreter
             }
         }
 
-        public int DoINIT_ARRAY(Frame frame, Instruction ili)
+        private int DoINIT_ARRAY(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCREATE_DELEGATE(Frame frame, Instruction ili)
+        private int DoCREATE_DELEGATE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCALL_LOC(Frame frame, Instruction ili)
+        private int DoCALL_LOC(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
 
-        public int NotImplemented(Frame frame, Instruction ili)
+        private int NotImplemented(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoNOP(Frame frame, Instruction ili)
+        private int DoNOP(Frame frame, Instruction ili)
         {
             return 0;
         }
 
-        public int DoBREAK(Frame frame, Instruction ili)
+        private int DoBREAK(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARG_0(Frame frame, Instruction ili)
+        private int DoLDARG_0(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARG_1(Frame frame, Instruction ili)
+        private int DoLDARG_1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARG_2(Frame frame, Instruction ili)
+        private int DoLDARG_2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARG_3(Frame frame, Instruction ili)
+        private int DoLDARG_3(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARG(Frame frame, Instruction ili)
+        private int DoLDARG(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); // more than 256 arguments are not supported
         }
 
-        public int DoLDARG_S(Frame frame, Instruction ili)
+        private int DoLDARG_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARGA_S(Frame frame, Instruction ili)
+        private int DoLDARGA_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDARGA(Frame frame, Instruction ili)
+        private int DoLDARGA(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOC_0(Frame frame, Instruction ili)
+        private int DoLDLOC_0(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOC_1(Frame frame, Instruction ili)
+        private int DoLDLOC_1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOC_2(Frame frame, Instruction ili)
+        private int DoLDLOC_2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOC_3(Frame frame, Instruction ili)
+        private int DoLDLOC_3(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOC_S(Frame frame, Instruction ili)
+        private int DoLDLOC_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLOCA(Frame frame, Instruction ili)
+        private int DoLDLOCA(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); // more than 256 variables are not supported
         }
 
-        public int DoLDLOC(Frame frame, Instruction ili)
+        private int DoLDLOC(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); // more than 256 variables are not supported
         }
 
-        public int DoLDLOCA_S(Frame frame, Instruction ili)
+        private int DoLDLOCA_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC_0(Frame frame, Instruction ili)
+        private int DoSTLOC_0(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC_1(Frame frame, Instruction ili)
+        private int DoSTLOC_1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC_2(Frame frame, Instruction ili)
+        private int DoSTLOC_2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC_3(Frame frame, Instruction ili)
+        private int DoSTLOC_3(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC_S(Frame frame, Instruction ili)
+        private int DoSTLOC_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTLOC(Frame frame, Instruction ili)
+        private int DoSTLOC(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); // more than 256 variables are not supported
         }
 
-        public int DoSTARG_S(Frame frame, Instruction ili)
+        private int DoSTARG_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTARG(Frame frame, Instruction ili)
+        private int DoSTARG(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); // more than 256 arguments are not supported
         }
 
-        public int DoLDNULL(Frame frame, Instruction ili)
+        private int DoLDNULL(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_M1(Frame frame, Instruction ili)
+        private int DoLDC_I4_M1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_0(Frame frame, Instruction ili)
+        private int DoLDC_I4_0(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_1(Frame frame, Instruction ili)
+        private int DoLDC_I4_1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_2(Frame frame, Instruction ili)
+        private int DoLDC_I4_2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_3(Frame frame, Instruction ili)
+        private int DoLDC_I4_3(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_4(Frame frame, Instruction ili)
+        private int DoLDC_I4_4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_5(Frame frame, Instruction ili)
+        private int DoLDC_I4_5(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_6(Frame frame, Instruction ili)
+        private int DoLDC_I4_6(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_7(Frame frame, Instruction ili)
+        private int DoLDC_I4_7(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_8(Frame frame, Instruction ili)
+        private int DoLDC_I4_8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4_S(Frame frame, Instruction ili)
+        private int DoLDC_I4_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I4(Frame frame, Instruction ili)
+        private int DoLDC_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_I8(Frame frame, Instruction ili)
+        private int DoLDC_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_R4(Frame frame, Instruction ili)
+        private int DoLDC_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDC_R8(Frame frame, Instruction ili)
+        private int DoLDC_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoDUP(Frame frame, Instruction ili)
+        private int DoDUP(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoPOP(Frame frame, Instruction ili)
+        private int DoPOP(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoJMP(Frame frame, Instruction ili)
+        private int DoJMP(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); //not used in managed code
         }
 
-        public int DoCALL(Frame frame, Instruction ili)
+        private int DoCALL(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            MethodBase mi = (MethodBase)ili.Operand.Value;
+            object[] args = new object[mi.GetParameters().Length];
+            TValue[] argRefs = new TValue[mi.GetParameters().Length];
+            for (int i = args.Length - 1; i >= 0; i--)
+            {
+                argRefs[i] = frame.Pop();
+                TValue arg = ResolveRef(frame, argRefs[i]);
+                args[i] = arg.Value;
+            }
+            TValue result;
+            if (mi.IsStatic)
+                result = new TValue(mi.Invoke(null, args));
+            else if (mi.IsConstructor)
+            {
+                TValue thisRef = frame.Pop();
+                AssignRef(frame, thisRef, new TValue(((ConstructorInfo)mi).Invoke(args)));
+                result = new TValue();
+            }
+            else
+            {
+                TValue obj = ResolveRef(frame, frame.Pop());
+                object instance = obj.Value;
+                result = new TValue(mi.Invoke(instance, args));
+            }
+            if (mi is MethodInfo)
+            {
+                if (((MethodInfo)mi).ReturnType != typeof(void))
+                {
+                    frame.Push(result);
+                }
+            }
+            for (int i = args.Length - 1; i >= 0; i--)
+            {
+                AssignRef(frame, argRefs[i], new TValue(args[i]));
+            }
+
+            return 0;
         }
 
-        public int DoCALLI(Frame frame, Instruction ili)
+        static TValue ResolveRef(Frame frame, TValue obj)
+        {
+            if (obj.IsLocalRef)
+                obj = frame.Locals[obj.Index];
+            if (obj.IsArgRef)
+                obj = frame.Arguments[obj.Index];
+            if (obj.IsArrayRef)
+                obj = new TValue(((Array)obj.Value).GetValue(obj.Index));
+            return obj;
+        }
+
+        static void AssignRef(Frame frame, TValue obj, TValue value)
+        {
+            if (obj.IsLocalRef)
+                frame.Locals[obj.Index] = value;
+            if (obj.IsArgRef)
+            {
+                bool isRefArgument = frame.Arguments[obj.Index].IsValueRef;
+                frame.Arguments[obj.Index] = value;
+                if (isRefArgument)
+                    frame.Arguments[obj.Index].MakeValueRef();
+                else
+                    frame.Arguments[obj.Index].MakeSimple();
+            }
+            if (obj.IsArrayRef)
+                ((Array)obj.Value).SetValue(value.Value, obj.Index);
+        }
+
+        private int DoCALLI(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); //unmanaged code calls are not supported
         }
 
-        public int DoRET(Frame frame, Instruction ili)
+        private int DoRET(Frame frame, Instruction ili)
         {
             return -1;
         }
 
-        public int DoBR_S(Frame frame, Instruction ili)
+        private int DoBR_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBR_FALSE_S(Frame frame, Instruction ili)
+        private int DoBR_FALSE_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBR_TRUE_S(Frame frame, Instruction ili)
+        private int DoBR_TRUE_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBEQ_S(Frame frame, Instruction ili)
+        private int DoBEQ_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGE_S(Frame frame, Instruction ili)
+        private int DoBGE_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGT_S(Frame frame, Instruction ili)
+        private int DoBGT_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLE_S(Frame frame, Instruction ili)
+        private int DoBLE_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLT_S(Frame frame, Instruction ili)
+        private int DoBLT_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBNE_UN_S(Frame frame, Instruction ili)
+        private int DoBNE_UN_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGE_UN_S(Frame frame, Instruction ili)
+        private int DoBGE_UN_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGT_UN_S(Frame frame, Instruction ili)
+        private int DoBGT_UN_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLE_UN_S(Frame frame, Instruction ili)
+        private int DoBLE_UN_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLT_UN_S(Frame frame, Instruction ili)
+        private int DoBLT_UN_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBR(Frame frame, Instruction ili)
+        private int DoBR(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBRFALSE(Frame frame, Instruction ili)
+        private int DoBRFALSE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBRTRUE(Frame frame, Instruction ili)
+        private int DoBRTRUE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBEQ(Frame frame, Instruction ili)
+        private int DoBEQ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGE(Frame frame, Instruction ili)
+        private int DoBGE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGT(Frame frame, Instruction ili)
+        private int DoBGT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLE(Frame frame, Instruction ili)
+        private int DoBLE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLT(Frame frame, Instruction ili)
+        private int DoBLT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBNE_UN(Frame frame, Instruction ili)
+        private int DoBNE_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGE_UN(Frame frame, Instruction ili)
+        private int DoBGE_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBGT_UN(Frame frame, Instruction ili)
+        private int DoBGT_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLE_UN(Frame frame, Instruction ili)
+        private int DoBLE_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBLT_UN(Frame frame, Instruction ili)
+        private int DoBLT_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSWITCH(Frame frame, Instruction ili)
+        private int DoSWITCH(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_I1(Frame frame, Instruction ili)
+        private int DoLDIND_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_U1(Frame frame, Instruction ili)
+        private int DoLDIND_U1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_I2(Frame frame, Instruction ili)
+        private int DoLDIND_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_U2(Frame frame, Instruction ili)
+        private int DoLDIND_U2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_I4(Frame frame, Instruction ili)
+        private int DoLDIND_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_U4(Frame frame, Instruction ili)
+        private int DoLDIND_U4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_I8(Frame frame, Instruction ili)
+        private int DoLDIND_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_I(Frame frame, Instruction ili)
+        private int DoLDIND_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_R4(Frame frame, Instruction ili)
+        private int DoLDIND_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_R8(Frame frame, Instruction ili)
+        private int DoLDIND_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDIND_REF(Frame frame, Instruction ili)
+        private int DoLDIND_REF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_REF(Frame frame, Instruction ili)
+        private int DoSTIND_REF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_I1(Frame frame, Instruction ili)
+        private int DoSTIND_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_I2(Frame frame, Instruction ili)
+        private int DoSTIND_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_I4(Frame frame, Instruction ili)
+        private int DoSTIND_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_I8(Frame frame, Instruction ili)
+        private int DoSTIND_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_R4(Frame frame, Instruction ili)
+        private int DoSTIND_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_R8(Frame frame, Instruction ili)
+        private int DoSTIND_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoADD(Frame frame, Instruction ili)
+        private int DoADD(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSUB(Frame frame, Instruction ili)
+        private int DoSUB(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoMUL(Frame frame, Instruction ili)
+        private int DoMUL(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoDIV(Frame frame, Instruction ili)
+        private int DoDIV(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoDIV_UN(Frame frame, Instruction ili)
+        private int DoDIV_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoREM(Frame frame, Instruction ili)
+        private int DoREM(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoREM_UN(Frame frame, Instruction ili)
+        private int DoREM_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoAND(Frame frame, Instruction ili)
+        private int DoAND(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoOR(Frame frame, Instruction ili)
+        private int DoOR(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoXOR(Frame frame, Instruction ili)
+        private int DoXOR(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSHL(Frame frame, Instruction ili)
+        private int DoSHL(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSHR(Frame frame, Instruction ili)
+        private int DoSHR(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSHR_UN(Frame frame, Instruction ili)
+        private int DoSHR_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoNEG(Frame frame, Instruction ili)
+        private int DoNEG(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoNOT(Frame frame, Instruction ili)
+        private int DoNOT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_I1(Frame frame, Instruction ili)
+        private int DoCONV_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_I2(Frame frame, Instruction ili)
+        private int DoCONV_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_I4(Frame frame, Instruction ili)
+        private int DoCONV_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_I8(Frame frame, Instruction ili)
+        private int DoCONV_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_R4(Frame frame, Instruction ili)
+        private int DoCONV_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_R8(Frame frame, Instruction ili)
+        private int DoCONV_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_U4(Frame frame, Instruction ili)
+        private int DoCONV_U4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_U8(Frame frame, Instruction ili)
+        private int DoCONV_U8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCALLVIRT(Frame frame, Instruction ili)
+        private int DoCALLVIRT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCPOBJ(Frame frame, Instruction ili)
+        private int DoCPOBJ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDOBJ(Frame frame, Instruction ili)
+        private int DoLDOBJ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDSTR(Frame frame, Instruction ili)
+        private int DoLDSTR(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
-        public int DoNEWOBJ(Frame frame, Instruction ili)
+        private int DoNEWOBJ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCASTCLASS(Frame frame, Instruction ili)
+        private int DoCASTCLASS(Frame frame, Instruction ili)
         {
             return 0; //external call only
         }
 
-        public int DoISINST(Frame frame, Instruction ili)
+        private int DoISINST(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_R_UN(Frame frame, Instruction ili)
+        private int DoCONV_R_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoUNBOX(Frame frame, Instruction ili)
+        private int DoUNBOX(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoTHROW(Frame frame, Instruction ili)
+        private int DoTHROW(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDFLD(Frame frame, Instruction ili)
+        private int DoLDFLD(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDFLDA(Frame frame, Instruction ili)
+        private int DoLDFLDA(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTFLD(Frame frame, Instruction ili)
+        private int DoSTFLD(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDSFLD(Frame frame, Instruction ili)
+        private int DoLDSFLD(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDSFLDA(Frame frame, Instruction ili)
+        private int DoLDSFLDA(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTSFLD(Frame frame, Instruction ili)
+        private int DoSTSFLD(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTOBJ(Frame frame, Instruction ili)
+        private int DoSTOBJ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_I1_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_I1_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_I2_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_I2_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_I4_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_I4_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_I8_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_I8_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_U1_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_U1_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_U2_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_U2_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_U4_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_U4_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_U8_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_U8_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_I_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_I_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONF_OVF_U_UN(Frame frame, Instruction ili)
+        private int DoCONF_OVF_U_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoBOX(Frame frame, Instruction ili)
+        private int DoBOX(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoNEWARR(Frame frame, Instruction ili)
+        private int DoNEWARR(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEN(Frame frame, Instruction ili)
+        private int DoLDLEN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEMA(Frame frame, Instruction ili)
+        private int DoLDLEMA(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_I1(Frame frame, Instruction ili)
+        private int DoLDLEM_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_U1(Frame frame, Instruction ili)
+        private int DoLDLEM_U1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_I2(Frame frame, Instruction ili)
+        private int DoLDLEM_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_U2(Frame frame, Instruction ili)
+        private int DoLDLEM_U2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_I4(Frame frame, Instruction ili)
+        private int DoLDLEM_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_U4(Frame frame, Instruction ili)
+        private int DoLDLEM_U4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_I8(Frame frame, Instruction ili)
+        private int DoLDLEM_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_I(Frame frame, Instruction ili)
+        private int DoLDLEM_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_R4(Frame frame, Instruction ili)
+        private int DoLDLEM_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_R8(Frame frame, Instruction ili)
+        private int DoLDLEM_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDLEM_REF(Frame frame, Instruction ili)
+        private int DoLDLEM_REF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_I(Frame frame, Instruction ili)
+        private int DoSTELEM_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_I1(Frame frame, Instruction ili)
+        private int DoSTELEM_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_I2(Frame frame, Instruction ili)
+        private int DoSTELEM_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
 
-        public int DoSTELEM_I4(Frame frame, Instruction ili)
+        private int DoSTELEM_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_I8(Frame frame, Instruction ili)
+        private int DoSTELEM_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_R4(Frame frame, Instruction ili)
+        private int DoSTELEM_R4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_R8(Frame frame, Instruction ili)
+        private int DoSTELEM_R8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM_REF(Frame frame, Instruction ili)
+        private int DoSTELEM_REF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDELEM(Frame frame, Instruction ili)
+        private int DoLDELEM(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTELEM(Frame frame, Instruction ili)
+        private int DoSTELEM(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoUNBOX_ANY(Frame frame, Instruction ili)
+        private int DoUNBOX_ANY(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_I1(Frame frame, Instruction ili)
+        private int DoCONV_OVF_I1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_U1(Frame frame, Instruction ili)
+        private int DoCONV_OVF_U1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_I2(Frame frame, Instruction ili)
+        private int DoCONV_OVF_I2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_U2(Frame frame, Instruction ili)
+        private int DoCONV_OVF_U2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_I4(Frame frame, Instruction ili)
+        private int DoCONV_OVF_I4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_U4(Frame frame, Instruction ili)
+        private int DoCONV_OVF_U4(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_I8(Frame frame, Instruction ili)
+        private int DoCONV_OVF_I8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_U8(Frame frame, Instruction ili)
+        private int DoCONV_OVF_U8(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoREFANYVAL(Frame frame, Instruction ili)
+        private int DoREFANYVAL(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCKFINITE(Frame frame, Instruction ili)
+        private int DoCKFINITE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoMKREFANY(Frame frame, Instruction ili)
+        private int DoMKREFANY(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDTOKEN(Frame frame, Instruction ili)
+        private int DoLDTOKEN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_U2(Frame frame, Instruction ili)
+        private int DoCONV_U2(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_U1(Frame frame, Instruction ili)
+        private int DoCONV_U1(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_I(Frame frame, Instruction ili)
+        private int DoCONV_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_I(Frame frame, Instruction ili)
+        private int DoCONV_OVF_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_OVF_U(Frame frame, Instruction ili)
+        private int DoCONV_OVF_U(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoADD_OVF(Frame frame, Instruction ili)
+        private int DoADD_OVF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoADD_OVF_UN(Frame frame, Instruction ili)
+        private int DoADD_OVF_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoMUL_OVF(Frame frame, Instruction ili)
+        private int DoMUL_OVF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoMUL_OVF_UN(Frame frame, Instruction ili)
+        private int DoMUL_OVF_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSUB_OVF(Frame frame, Instruction ili)
+        private int DoSUB_OVF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSUB_OVF_UN(Frame frame, Instruction ili)
+        private int DoSUB_OVF_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoENDFINALLY(Frame frame, Instruction ili)
+        private int DoENDFINALLY(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLEAVE(Frame frame, Instruction ili)
+        private int DoLEAVE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLEAVE_S(Frame frame, Instruction ili)
+        private int DoLEAVE_S(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoSTIND_I(Frame frame, Instruction ili)
+        private int DoSTIND_I(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONV_U(Frame frame, Instruction ili)
+        private int DoCONV_U(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoARGLIST(Frame frame, Instruction ili)
+        private int DoARGLIST(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCEQ(Frame frame, Instruction ili)
+        private int DoCEQ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCGT(Frame frame, Instruction ili)
+        private int DoCGT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCGT_UN(Frame frame, Instruction ili)
+        private int DoCGT_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCLT(Frame frame, Instruction ili)
+        private int DoCLT(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCLT_UN(Frame frame, Instruction ili)
+        private int DoCLT_UN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLD_FTN(Frame frame, Instruction ili)
+        private int DoLD_FTN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLDVIRT_FTN(Frame frame, Instruction ili)
+        private int DoLDVIRT_FTN(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoLOCALLOC(Frame frame, Instruction ili)
+        private int DoLOCALLOC(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoENDFILTER(Frame frame, Instruction ili)
+        private int DoENDFILTER(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoUNALIGNED(Frame frame, Instruction ili)
+        private int DoUNALIGNED(Frame frame, Instruction ili)
         {
             return 0; // prexif
         }
 
-        public int DoVOLATILE(Frame frame, Instruction ili)
+        private int DoVOLATILE(Frame frame, Instruction ili)
         {
             return 0; // prefix
         }
 
-        public int DoTAIL(Frame frame, Instruction ili)
+        private int DoTAIL(Frame frame, Instruction ili)
         {
             return 0; // prefix
         }
 
-        public int DoINITOBJ(Frame frame, Instruction ili)
+        private int DoINITOBJ(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoCONSTRAINED(Frame frame, Instruction ili)
+        private int DoCONSTRAINED(Frame frame, Instruction ili)
         {
             return 0; // prefix
         }
 
-        public int DoCPBLK(Frame frame, Instruction ili)
+        private int DoCPBLK(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoINITBLK(Frame frame, Instruction ili)
+        private int DoINITBLK(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoNO(Frame frame, Instruction ili)
+        private int DoNO(Frame frame, Instruction ili)
         {
             return 0; // prefix
         }
 
-        public int DoRETHROW(Frame frame, Instruction ili)
+        private int DoRETHROW(Frame frame, Instruction ili)
         {
             return 0;
         }
 
-        public int DoSIZEOF(Frame frame, Instruction ili)
+        private int DoSIZEOF(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoREFANYTYPE(Frame frame, Instruction ili)
+        private int DoREFANYTYPE(Frame frame, Instruction ili)
         {
             throw new NotImplementedException();
         }
 
-        public int DoREADONLY(Frame frame, Instruction ili)
+        private int DoREADONLY(Frame frame, Instruction ili)
         {
             return 0; // prefix
         }
