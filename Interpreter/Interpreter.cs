@@ -9,10 +9,28 @@ namespace Interpreter
 {
     public class Interpreter
     {
-        public Interpreter()
+        private Package package;
+
+        public Interpreter(Package p)
         {
+            this.package = p;
             InitCommands();
         }
+
+
+        private TValue[] Execute(TStack stack, String name)
+        {
+            Procedure p = package.FindProcedure(name);
+
+            Frame frame = new Frame(package, stack);
+
+            frame.LoadArguments(p.GetArguments());
+
+            ExecuteProcedure(frame, p);
+
+            return frame.Arguments;
+        }
+
 
         public void ExecuteProcedure(Frame frame, Procedure p)
         {
@@ -51,7 +69,58 @@ namespace Interpreter
 
         private int DoCALL_LOC(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            bool isConstructor = ili.Operand.As<string>().IsConstructor();
+
+            int argCount;
+            TStack argsStack = new TStack();
+            if (ili.Operand.As<string>().IsNoArgFunc())
+                argCount = 0;
+            else
+            {
+                Type[] pargs = TypeHelper.GetArguments(ili.Operand.As<string>().ExtractArguments());
+                argCount = pargs.Length;
+            }
+
+            TValue[] argRefs = new TValue[argCount];
+            TValue[] args = new TValue[argCount];
+
+            if (isConstructor)
+            {
+                throw new NotImplementedException();
+            }
+
+            for (int i = argCount - 1; i >= (isConstructor ? 1 : 0); i--)
+            {
+                argRefs[i] = frame.Pop();
+                args[i] = frame.ResolveRef(argRefs[i]);
+
+                if (argRefs[i].IsRef)
+                {
+                    args[i].MakeValueRef();
+                }
+            }
+
+            for (int i = 0; i < argCount; i++)
+                argsStack.Push(args[i]);
+
+            args = Execute(argsStack, ili.Operand.As<string>());
+            
+            while (argsStack.Count > 0)
+            {
+                TValue val = argsStack.Pop();
+                if (val.IsArgRef)
+                    frame.Push(args[val.Index]);
+                else
+                    frame.Push(val);
+            }
+
+            for (int i = argCount - 1; i >= 0; i--)
+                frame.AssignRef(argRefs[i], args[i]);
+
+            if (isConstructor)
+                frame.Push(frame.Locals[255]);
+
+            return 0;
         }
 
 
@@ -72,22 +141,26 @@ namespace Interpreter
 
         private int DoLDARG_0(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.LdArg(0);
+            return 0;
         }
 
         private int DoLDARG_1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.LdArg(1);
+            return 0;
         }
 
         private int DoLDARG_2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.LdArg(2);
+            return 0;
         }
 
         private int DoLDARG_3(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.LdArg(3);
+            return 0;
         }
 
         private int DoLDARG(Frame frame, Instruction ili)
@@ -97,12 +170,14 @@ namespace Interpreter
 
         private int DoLDARG_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Arguments[ili.Operand.As<int>()]);
+            return 0;
         }
 
         private int DoLDARGA_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(TValue.CreateArgRef(ili.Operand.As<int>()));
+            return 0;
         }
 
         private int DoLDARGA(Frame frame, Instruction ili)
@@ -112,27 +187,32 @@ namespace Interpreter
 
         private int DoLDLOC_0(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Locals[0]);
+            return 0;
         }
 
         private int DoLDLOC_1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Locals[1]);
+            return 0;
         }
 
         private int DoLDLOC_2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Locals[2]);
+            return 0;
         }
 
         private int DoLDLOC_3(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Locals[3]);
+            return 0;
         }
 
         private int DoLDLOC_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Locals[ili.Operand.As<int>()]);
+            return 0;
         }
 
         private int DoLDLOCA(Frame frame, Instruction ili)
@@ -147,32 +227,38 @@ namespace Interpreter
 
         private int DoLDLOCA_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(TValue.CreateLocalRef(ili.Operand.As<int>()));
+            return 0;
         }
 
         private int DoSTLOC_0(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Locals[0] = frame.Pop();
+            return 0;
         }
 
         private int DoSTLOC_1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Locals[1] = frame.Pop();
+            return 0;
         }
 
         private int DoSTLOC_2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Locals[2] = frame.Pop();
+            return 0;
         }
 
         private int DoSTLOC_3(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Locals[3] = frame.Pop();
+            return 0;
         }
 
         private int DoSTLOC_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Locals[ili.Operand.As<int>()] = frame.Pop();
+            return 0;
         }
 
         private int DoSTLOC(Frame frame, Instruction ili)
@@ -192,82 +278,100 @@ namespace Interpreter
 
         private int DoLDNULL(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue());
+            return 0;
         }
 
         private int DoLDC_I4_M1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)(-1)));
+            return 0;
         }
 
         private int DoLDC_I4_0(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)0));
+            return 0;
         }
 
         private int DoLDC_I4_1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)1));
+            return 0;
         }
 
         private int DoLDC_I4_2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)2));
+            return 0;
         }
 
         private int DoLDC_I4_3(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)3));
+            return 0;
         }
 
         private int DoLDC_I4_4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)4));
+            return 0;
         }
 
         private int DoLDC_I4_5(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)5));
+            return 0;
+
         }
 
         private int DoLDC_I4_6(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)6));
+            return 0;
+
         }
 
         private int DoLDC_I4_7(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)7));
+            return 0;
         }
 
         private int DoLDC_I4_8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue((System.Int32)8));
+            return 0;
         }
 
         private int DoLDC_I4_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
         private int DoLDC_I4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
         private int DoLDC_I8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
         private int DoLDC_R4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
         private int DoLDC_R8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(ili.Operand);
+            return 0;
         }
 
         private int DoDUP(Frame frame, Instruction ili)
@@ -293,7 +397,7 @@ namespace Interpreter
             for (int i = args.Length - 1; i >= 0; i--)
             {
                 argRefs[i] = frame.Pop();
-                TValue arg = ResolveRef(frame, argRefs[i]);
+                TValue arg = frame.ResolveRef(argRefs[i]);
                 args[i] = arg.Value;
             }
             TValue result;
@@ -302,12 +406,12 @@ namespace Interpreter
             else if (mi.IsConstructor)
             {
                 TValue thisRef = frame.Pop();
-                AssignRef(frame, thisRef, new TValue(((ConstructorInfo)mi).Invoke(args)));
+                frame.AssignRef(thisRef, new TValue(((ConstructorInfo)mi).Invoke(args)));
                 result = new TValue();
             }
             else
             {
-                TValue obj = ResolveRef(frame, frame.Pop());
+                TValue obj = frame.ResolveRef(frame.Pop());
                 object instance = obj.Value;
                 result = new TValue(mi.Invoke(instance, args));
             }
@@ -320,12 +424,13 @@ namespace Interpreter
             }
             for (int i = args.Length - 1; i >= 0; i--)
             {
-                AssignRef(frame, argRefs[i], new TValue(args[i]));
+                frame.AssignRef(argRefs[i], new TValue(args[i]));
             }
 
             return 0;
         }
 
+        /*
         static TValue ResolveRef(Frame frame, TValue obj)
         {
             if (obj.IsLocalRef)
@@ -353,7 +458,9 @@ namespace Interpreter
             if (obj.IsArrayRef)
                 ((Array)obj.Value).SetValue(value.Value, obj.Index);
         }
+        */
 
+         
         private int DoCALLI(Frame frame, Instruction ili)
         {
             throw new NotImplementedException(); //unmanaged code calls are not supported
@@ -366,7 +473,7 @@ namespace Interpreter
 
         private int DoBR_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return ili.Operand.As<int>();
         }
 
         private int DoBR_FALSE_S(Frame frame, Instruction ili)
@@ -376,7 +483,7 @@ namespace Interpreter
 
         private int DoBR_TRUE_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return frame.Pop().CheckIfFalseNullZero() ? 0 : ili.Operand.As<int>();
         }
 
         private int DoBEQ_S(Frame frame, Instruction ili)
@@ -591,22 +698,35 @@ namespace Interpreter
 
         private int DoADD(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(MathHelper.Add(frame.ResolveRef(v1), frame.ResolveRef(v2)));
+            return 0;
+
         }
 
         private int DoSUB(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(MathHelper.Sub(frame.ResolveRef(v1), frame.ResolveRef(v2)));
+            return 0;
         }
 
         private int DoMUL(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(MathHelper.Mul(frame.ResolveRef(v1), frame.ResolveRef(v2)));
+            return 0;
         }
 
         private int DoDIV(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(MathHelper.Div(frame.ResolveRef(v1), frame.ResolveRef(v2)));
+            return 0;
         }
 
         private int DoDIV_UN(Frame frame, Instruction ili)
@@ -847,12 +967,15 @@ namespace Interpreter
 
         private int DoNEWARR(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(new TValue(ili.OperandT, frame.Pop().As<int>()));
+            return 0;
         }
 
         private int DoLDLEN(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue arr = frame.Pop();
+            frame.Push(new TValue(arr.As<Array>().Length));
+            return 0;
         }
 
         private int DoLDLEMA(Frame frame, Instruction ili)
@@ -953,7 +1076,11 @@ namespace Interpreter
 
         private int DoSTELEM_REF(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue value = frame.Pop();
+            TValue index = frame.Pop();
+            TValue arr = frame.Pop();
+            arr.As<Array>().SetValue(value.Value, index.As<int>());
+            return 0;
         }
 
         private int DoLDELEM(Frame frame, Instruction ili)
@@ -1133,7 +1260,11 @@ namespace Interpreter
 
         private int DoCLT(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(new TValue(frame.ResolveRef(v1).CompareTo(frame.ResolveRef(v2)) < 0 ? 1 : 0));
+            return 0;
+
         }
 
         private int DoCLT_UN(Frame frame, Instruction ili)

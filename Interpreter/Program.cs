@@ -20,9 +20,9 @@ namespace Interpreter
             using (StreamReader sr = new StreamReader(fileName))
             {
                 p = (Package)s.Deserialize(sr);
-                p.Prepare();
             }
 
+            p.Prepare();
             p.Run();
 
             Console.ReadLine();

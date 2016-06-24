@@ -28,6 +28,14 @@ namespace Interpreter
             }
         }
 
+        public Type OperandT
+        {
+            get
+            {
+                return operandType;
+            }
+        }
+
         public void Prepare()
         {
             if (ArgType != null)

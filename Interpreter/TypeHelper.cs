@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter
 {
-    internal class TypeHelper
+    internal static class TypeHelper
     {
         static Dictionary<string, Type> _types;
 
@@ -56,6 +56,12 @@ namespace Interpreter
             return result;
         }
 
+        public static String ExtractArguments(this String value)
+        {
+            int idx = value.IndexOf('(');
+            return value.Substring(idx + 1, value.Length - idx - 2);
+        }
+
         public static Type[] GetArguments(String q)
         {
             int idx = 0;
@@ -79,7 +85,7 @@ namespace Interpreter
             return GetArguments(q);
         }
 
-        static String FindNextArgument(String s, int startPos)
+        private static String FindNextArgument(String s, int startPos)
         {
             int idx = s.Length;
             int cnt = 0;
@@ -112,5 +118,16 @@ namespace Interpreter
             }
             return args != null ? args : new Type[] { };
         }
+
+        public static bool IsNoArgFunc(this string value)
+        {
+            return value.IndexOf("()") >= 0;
+        }
+
+        public static bool IsConstructor(this string value)
+        {
+            return value.IndexOf(".ctor") >= 0;
+        }
+
     }
 }

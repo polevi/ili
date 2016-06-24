@@ -36,10 +36,10 @@ namespace Interpreter
         {
             Procedure p = FindProcedure("System.Void local.Assembly.Main::EntryPoint()");
 
-            IStack stack = new IStack();
+            TStack stack = new TStack();
             Frame frame = new Frame(this, stack);
 
-            Interpreter i = new Interpreter();
+            Interpreter i = new Interpreter(this);
             i.ExecuteProcedure(frame, p);
         }
     }

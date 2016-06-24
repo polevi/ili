@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter
 {
-    public class IStack : Stack<TValue>
+    public class TStack : Stack<TValue>
     {
     }
 }

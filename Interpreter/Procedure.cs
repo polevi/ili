@@ -18,6 +18,11 @@ namespace Interpreter
             return instructions.ToArray();
         }
 
+        public Type[] GetArguments()
+        {
+            return arguments;
+        }
+
         public void Prepare()
         {
             arguments = TypeHelper.ArgumentsFromString(Name.Split(new String[] { "::" }, StringSplitOptions.RemoveEmptyEntries)[1]);

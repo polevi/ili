@@ -21,12 +21,23 @@ namespace Interpreter
             value = v;
         }
 
+        public TValue(Type t, int n) //array
+            : this()
+        {
+            value = Array.CreateInstance(t, n);
+        }
+
         public object Value
         {
             get
             {
                 return value;
             }
+        }
+
+        public T As<T>()
+        {
+            return (T)value;
         }
 
         public bool IsLocalRef
@@ -69,6 +80,14 @@ namespace Interpreter
             }
         }
 
+        public bool IsRef
+        {
+            get
+            {
+                return addrFlags >= 1 && addrFlags <= 5;
+            }
+        }
+
         public int Index
         {
             get
@@ -86,5 +105,51 @@ namespace Interpreter
         {
             addrFlags = 0;
         }
+
+        public static TValue CreateLocalRef(System.Int32 n)
+        {
+            TValue result = new TValue();
+            result.addrFlags = 1;
+            result.addrIndex = n;
+            return result;
+        }
+
+        public static TValue CreateArgRef(System.Int32 n)
+        {
+            TValue result = new TValue();
+            result.addrFlags = 2;
+            result.addrIndex = n;
+            return result;
+        }
+
+        public bool CheckIfFalseNullZero()
+        {
+            if (IsRef)
+                return false; // ref is always true
+            if (value == null) // null or empty
+                return true;
+
+            return value.GetType().IsValueType ? TValueHelper.CheckIfFalseNullZero(this) : false;
+        }
+
+        public int CompareTo(TValue other, bool signed = true)
+        {
+            if (value == null && other.Value == null)
+                return 0;
+
+            if (value != null && other.Value != null)
+            {
+                if (value.GetType().IsValueType && other.Value.GetType().IsValueType)
+                    return TValueHelper.CompareTo(this, other, signed);
+
+                if (!value.GetType().IsValueType && !other.Value.GetType().IsValueType)
+                    return value.Equals(other.Value) ? 0 : 1;
+
+                return 1;
+            }
+
+            return 1;
+        }
+
     }
 }
