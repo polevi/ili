@@ -39,6 +39,11 @@ namespace Interpreter
             return stack.Pop();
         }
 
+        public TValue Peek()
+        {
+            return stack.Peek();
+        }
+
         public TValue[] Locals
         {
             get

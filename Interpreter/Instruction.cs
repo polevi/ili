@@ -175,5 +175,10 @@ namespace Interpreter
                 return result;
             }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

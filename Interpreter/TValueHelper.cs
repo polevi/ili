@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Interpreter
 {
-    public class TValueHelper
+    public static class TValueHelper
     {
         static Type[] valueTypes = new Type[] {
             typeof(System.Boolean),
@@ -26,6 +26,7 @@ namespace Interpreter
             typeof(System.Guid)
         };
 
+        public delegate TValue B(TValue value);
         public delegate bool D(TValue value);
         public delegate int E(TValue value1, TValue value2, bool signed);
 
@@ -38,8 +39,8 @@ namespace Interpreter
             (TValue x) => x.As<int>() == 0,
             (TValue x) => x.As<int>() == 0,
             (TValue x) => x.As<Int64>() == 0,
-            (TValue x) => x.As<Int64>() == 0,
-            (TValue x) => x.As<double>() == 0,
+            (TValue x) => x.As<UInt64>() == 0,
+            (TValue x) => x.As<float>() == 0,
             (TValue x) => x.As<double>() == 0,
             (TValue x) => {throw new NotImplementedException();},
             (TValue x) => {throw new NotImplementedException();},
@@ -329,15 +330,30 @@ namespace Interpreter
             }
         };
 
-
-        public static bool CheckIfFalseNullZero(TValue value)
+        public static bool CheckIfFalseNullZero(this TValue value)
         {
+            if (value.IsRef)
+                return false; // ref is always true
+
+            if (value.Value == null) // null or empty
+                return true;
+
+            if (!value.Value.GetType().IsValueType)
+                return false;
+            else
+
             return checkZeroActions[Array.IndexOf<Type>(valueTypes, value.Value.GetType())](value);
         }
 
         public static int CompareTo(TValue value1, TValue value2, bool signed)
         {
             return compareActions[Array.IndexOf<Type>(valueTypes, value1.Value.GetType()) + 1, Array.IndexOf<Type>(valueTypes, value2.Value.GetType())](value1, value2, signed);
-        } 
+        }
+
+        public static TValue ConvertTo(TValue value, Type t)
+        {
+            return new TValue(value.Value);
+            //return convertActions[!value.Value.GetType().IsValueType ? 0 : Array.IndexOf<Type>(valueTypes, value.Value.GetType()) + 1, Array.IndexOf<Type>(valueTypes, t)](value);
+        }
     }
 }

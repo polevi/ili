@@ -268,7 +268,17 @@ namespace Interpreter
 
         private int DoSTARG_S(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            bool argumentIsRef = frame.Arguments[(byte)ili.Operand.As<int>()].IsValueRef;
+            if (!argumentIsRef) 
+                frame.Arguments[(byte)ili.Operand.As<int>()] = frame.Pop();
+            else
+                frame.Pop();
+            //ignore command in order not to spoil passed argument (CLR works this way). 
+            //It may lead bug because local copy of argument should be modified by the operator cemantic
+            //But c# compiler will no generate starg for ref argument
+            //To write into ref argument stind will be used
+
+            return 0;
         }
 
         private int DoSTARG(Frame frame, Instruction ili)
@@ -376,7 +386,8 @@ namespace Interpreter
 
         private int DoDUP(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Peek());
+            return 0;
         }
 
         private int DoPOP(Frame frame, Instruction ili)
@@ -608,92 +619,95 @@ namespace Interpreter
 
         private int DoLDIND_I1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_U1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_I2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_U2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_I4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.ResolveRef(frame.Pop()));
+            return 0;
         }
 
         private int DoLDIND_U4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_I8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_I(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_R4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_R8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoLDIND_REF(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoLDIND_I4(frame, ili);
         }
 
         private int DoSTIND_REF(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoSTIND_I1(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoSTIND_I2(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoSTIND_I4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue data = frame.Pop();
+            frame.AssignRef(frame.Pop(), data);
+            return 0;
         }
 
         private int DoSTIND_I8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoSTIND_R4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoSTIND_R8(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            return DoSTIND_I4(frame, ili);
         }
 
         private int DoADD(Frame frame, Instruction ili)
@@ -702,7 +716,6 @@ namespace Interpreter
             TValue v1 = frame.Pop();
             frame.Push(MathHelper.Add(frame.ResolveRef(v1), frame.ResolveRef(v2)));
             return 0;
-
         }
 
         private int DoSUB(Frame frame, Instruction ili)
@@ -796,7 +809,8 @@ namespace Interpreter
 
         private int DoCONV_I4(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            frame.Push(frame.Pop().ConvertTo(typeof(System.Int32)));
+            return 0;
         }
 
         private int DoCONV_I8(Frame frame, Instruction ili)
@@ -1035,7 +1049,10 @@ namespace Interpreter
 
         private int DoLDLEM_REF(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue index = frame.Pop();
+            TValue arr = frame.Pop();
+            frame.Push(new TValue(((Array)arr.Value).GetValue(index.As<int>())));
+            return 0;
         }
 
         private int DoSTELEM_I(Frame frame, Instruction ili)
@@ -1245,7 +1262,10 @@ namespace Interpreter
 
         private int DoCEQ(Frame frame, Instruction ili)
         {
-            throw new NotImplementedException();
+            TValue v2 = frame.Pop();
+            TValue v1 = frame.Pop();
+            frame.Push(new TValue(frame.ResolveRef(v1).CompareTo(frame.ResolveRef(v2)) == 0 ? 1 : 0));
+            return 0;
         }
 
         private int DoCGT(Frame frame, Instruction ili)

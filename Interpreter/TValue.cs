@@ -122,6 +122,7 @@ namespace Interpreter
             return result;
         }
 
+        /*
         public bool CheckIfFalseNullZero()
         {
             if (IsRef)
@@ -131,7 +132,8 @@ namespace Interpreter
 
             return value.GetType().IsValueType ? TValueHelper.CheckIfFalseNullZero(this) : false;
         }
-
+        */
+        
         public int CompareTo(TValue other, bool signed = true)
         {
             if (value == null && other.Value == null)
@@ -151,5 +153,9 @@ namespace Interpreter
             return 1;
         }
 
+        public TValue ConvertTo(Type t)
+        {
+            return TValueHelper.ConvertTo(this, t);
+        }
     }
 }
